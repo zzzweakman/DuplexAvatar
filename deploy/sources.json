@@ -1,0 +1,17 @@
+{
+  "repositories": [
+    {"directory": "MiniCPM-o-Demo", "url": "https://github.com/OpenBMB/MiniCPM-o-Demo.git", "revision": "47709a9210dfd71afa76c058e017fc8c4db5c8d2"},
+    {"directory": "SoulX-FlashHead", "url": "https://github.com/Soul-AILab/SoulX-FlashHead.git", "revision": "9bc03de06bb0de82cd6bc477804512ae06144bf2"},
+    {"directory": "Omni-Interaction-Agent", "url": "https://github.com/Omni-Interaction-Gander/Omni-Interaction-Agent.git", "revision": "847ad12f7c6d4d0f1768fcd5b89a9628576d5f24"}
+  ],
+  "models": [
+    {"repo_id": "openbmb/MiniCPM-o-4_5", "revision": "503e754207c94da6bb26850b4469f367c9ea3582", "directory": "MiniCPM-o-Demo/models/MiniCPM-o-4_5", "ignore_patterns": ["assets/*"]},
+    {"repo_id": "Soul-AILab/SoulX-FlashHead-1_3B", "revision": "5fbd2e44ba08ab2deb28bd55cff2c15523e51ba5", "directory": "SoulX-FlashHead/models/SoulX-FlashHead-1_3B", "ignore_patterns": ["Model_Pro/*", "assets/*"]},
+    {"repo_id": "facebook/wav2vec2-base-960h", "revision": "22aad52d435eb6dbaf354bdad9b0da84ce7d6156", "directory": "SoulX-FlashHead/models/wav2vec2-base-960h", "ignore_patterns": ["tf_model.h5", "flax_model.msgpack", "rust_model.ot"]},
+    {"repo_id": "Systran/faster-whisper-large-v3", "revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478", "directory": "Omni-Interaction-Agent/checkpoints/faster-whisper-large-v3", "ignore_patterns": []}
+  ],
+  "flash_attention": {
+    "url": "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.0.post2/flash_attn-2.8.0.post2+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl",
+    "sha256": "8d7502817aacefb906a06d991b5c5777ecbc541aeefd76fb46466aaa787f0034"
+  }
+}

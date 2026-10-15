@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DuplexAvatar · 实时数字人</title>
+  <link rel="preload" href="/static/fonts/noto-sans-sc-chinese-simplified-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header><a class="brand" href="/">DuplexAvatar</a><span class="header-note">看见你，听见你，与你交谈。</span><span id="status" role="status">正在检查服务</span></header>
+  <main>
+    <section class="stage" aria-label="数字人画面">
+      <canvas id="avatar" width="512" height="512" aria-label="数字人实时视频"></canvas>
+      <div id="voiceStage" class="voice-stage" hidden><h2>只听声音</h2><p>回复通过扬声器播放，文字显示在对话记录中。</p></div>
+      <div class="stage-caption"><span id="outputLabel">MiniCPM 原声 · FlashHead Lite</span><span id="playState">等待开始</span></div>
+    </section>
+    <aside>
+      <section class="inputs">
+        <h1>开始一段对话</h1>
+        <p id="intro" class="intro">用声音交谈，也可以让她看见你的画面。倾听时，人物会保持自然的小幅动作。</p>
+        <fieldset class="input-mode"><legend>输入方式</legend><label><input id="audioInput" name="inputMode" type="radio" value="audio">仅音频</label><label><input id="useCamera" name="inputMode" type="radio" value="audiovisual" checked>音频 + 摄像头</label></fieldset>
+        <div id="cameraPanel" class="camera"><video id="camera" autoplay playsinline muted></video><span id="cameraHint">摄像头未开启</span><canvas id="capture" hidden></canvas></div>
+        <div id="cameraFeedback" class="camera-feedback"><span id="visionState" role="status">等待画面输入</span><time id="visionTime"></time></div>
+        <div class="audio-input" aria-label="音频输入状态">
+          <div class="meter-heading"><span id="micState">麦克风未开启</span><output id="inputDb">— dBFS</output></div>
+          <div id="inputMeter" class="meter" role="meter" aria-label="输入音频响度" aria-valuemin="-60" aria-valuemax="0" aria-valuenow="-60"><span id="meterFill"></span></div>
+          <div class="input-feedback"><span id="inputDelivery" role="status">等待音频输入</span><span id="asrState">字幕准备中</span></div>
+        </div>
+        <label class="check"><input id="useAvatar" type="checkbox" checked> 生成数字人视频</label>
+        <p class="mode-hint">关闭数字人视频后，只播放回复声音。</p>
+        <div class="actions"><button id="start" disabled>开始对话</button><button id="stop" class="secondary" disabled>结束</button></div>
+        <button id="interrupt" class="secondary full" disabled>打断当前回复</button>
+        <button id="demo" class="text-button" disabled>运行音视频样例</button>
+        <p id="notice" class="notice" aria-live="polite">样例使用预录音频和红色图片，无需麦克风权限。</p>
+      </section>
+      <section class="conversation"><h2>对话记录</h2><p class="transcript-hint">你的语音转写、回复文字与时间。</p><div id="transcript" role="log" aria-live="polite" aria-relevant="additions text"><p class="empty">说完一句话后，识别文字会显示在这里。</p></div></section>
+      <details><summary>运行信息</summary><dl><dt>调度粒度</dt><dd id="blockClock">随所选模型确定</dd><dt>输入</dt><dd id="inputCount">0 段</dd><dt id="inputLatencyLabel">输入耗时</dt><dd id="inputLatency">—</dd><dt>静音合并</dt><dd id="silenceSkipped">0 秒</dd><dt>视觉输入</dt><dd><span id="visionDetails">尚未处理画面</span><img id="modelInputImage" class="model-input-image" alt="最近一帧已由 MiniCPM 处理的输入画面" hidden></dd><dt>输出视频</dt><dd id="frameCount">0 帧</dd><dt>生成速度</dt><dd id="rtf">—</dd><dt>模型设备</dt><dd id="modelDevices">正在检查</dd><dt>加速</dt><dd id="compileState">正在检查</dd></dl></details>
+    </aside>
+  </main>
+  <footer>声音由 MiniCPM 生成，人物画面由 FlashHead 驱动。首次使用请允许浏览器访问设备。</footer>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

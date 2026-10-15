@@ -1,0 +1,296 @@
+{
+  "date": "2026-10-15",
+  "scope": "Single-session real GPU inference with synthetic browser inputs; see docs/performance.md for measurement limits.",
+  "vision": {
+    "passed": true,
+    "checks": [
+      {
+        "scene": "blue",
+        "reply": "现在看到的是蓝色。",
+        "consumed_frames": 44,
+        "vision_tokens_per_frame": [
+          64
+        ],
+        "feedback": "模型已处理 44 帧画面",
+        "capture_time": "采集 15:14:59"
+      },
+      {
+        "scene": "green",
+        "reply": "目前主要颜色为绿色。",
+        "consumed_frames": 47,
+        "vision_tokens_per_frame": [
+          64
+        ],
+        "feedback": "模型已处理 100 帧画面",
+        "capture_time": "采集 15:15:11"
+      },
+      {
+        "scene": "portrait",
+        "reply": "现在的画面是一位短发女性，她穿着白色上衣，背景虚化，呈暗色调。",
+        "consumed_frames": 65,
+        "vision_tokens_per_frame": [
+          64
+        ],
+        "feedback": "模型已处理 174 帧画面",
+        "capture_time": "采集 15:15:27"
+      },
+      {
+        "scene": "after-window",
+        "reply": "当前画面是一片纯蓝，没有其他元素。",
+        "consumed_frames": 47,
+        "vision_tokens_per_frame": [
+          64
+        ],
+        "feedback": "模型已处理 331 帧画面",
+        "capture_time": "采集 15:16:00"
+      }
+    ],
+    "errors": [],
+    "camera_pause_detected": true,
+    "camera_resume_confirmed": true,
+    "same_session_scene_changes": true,
+    "avatar_and_original_audio": true,
+    "camera_with_voice_output": false,
+    "timing": {
+      "duration_ms": 90312,
+      "sampled_frames": 429,
+      "fps": 4.819629856931314,
+      "median_capture_interval_ms": 200,
+      "frames_per_batch": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "processing_median_ms": 176.9,
+      "processing_p95_ms": 352.4,
+      "max_pending_inputs": 0,
+      "max_vision_context_tokens": 8829,
+      "max_vision_context_units": 24,
+      "skipped_silence_inputs": 0,
+      "processed_video_frames": 429,
+      "received_video_frames": 429
+    },
+    "delivery": [
+      {
+        "at": 1792077362264,
+        "state": "ready",
+        "text": "服务已收到 66.24 秒音频",
+        "details": "上传往返约 57 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077363270,
+        "state": "ready",
+        "text": "服务已收到 67.2 秒音频",
+        "details": "上传往返约 47 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077364274,
+        "state": "ready",
+        "text": "服务已收到 68.16 秒音频",
+        "details": "上传往返约 38 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077365278,
+        "state": "ready",
+        "text": "服务已收到 69.12 秒音频",
+        "details": "上传往返约 31 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077366467,
+        "state": "ready",
+        "text": "服务已收到 70.08 秒音频",
+        "details": "上传往返约 26 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077367472,
+        "state": "ready",
+        "text": "服务已收到 71.04 秒音频",
+        "details": "上传往返约 22 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077368477,
+        "state": "ready",
+        "text": "服务已收到 72 秒音频",
+        "details": "上传往返约 18 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077369481,
+        "state": "ready",
+        "text": "服务已收到 72.96 秒音频",
+        "details": "上传往返约 15 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077370485,
+        "state": "ready",
+        "text": "服务已收到 73.92 秒音频",
+        "details": "上传往返约 13 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077371494,
+        "state": "ready",
+        "text": "服务已收到 74.88 秒音频",
+        "details": "上传往返约 11 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077372500,
+        "state": "ready",
+        "text": "服务已收到 75.84 秒音频",
+        "details": "上传往返约 10 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077373504,
+        "state": "ready",
+        "text": "服务已收到 76.8 秒音频",
+        "details": "上传往返约 9 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077374510,
+        "state": "ready",
+        "text": "服务已收到 77.76 秒音频",
+        "details": "上传往返约 8 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077375516,
+        "state": "ready",
+        "text": "服务已收到 78.72 秒音频",
+        "details": "上传往返约 7 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077376520,
+        "state": "ready",
+        "text": "服务已收到 79.68 秒音频",
+        "details": "上传往返约 6 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077377525,
+        "state": "ready",
+        "text": "服务已收到 81.6 秒音频",
+        "details": "上传往返约 6 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077378530,
+        "state": "ready",
+        "text": "服务已收到 82.56 秒音频",
+        "details": "上传往返约 5 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077379534,
+        "state": "ready",
+        "text": "服务已收到 83.52 秒音频",
+        "details": "上传往返约 5 ms；上传窗口 2 块；本地待发 0 块。"
+      },
+      {
+        "at": 1792077380537,
+        "state": "ready",
+        "text": "服务已收到 84.48 秒音频",
+        "details": "上传往返约 5 ms；上传窗口 2 块；本地待发 0 块。"
+      }
+    ]
+  },
+  "audio_input_avatar": {
+    "passed": true,
+    "text": "现在没有看到图片，不知道是什么颜色。",
+    "audio_seconds": 4.12,
+    "input_mode": "audio",
+    "output_mode": "avatar",
+    "idle_chunks": 4,
+    "idle_motion_mean_absolute_difference": 3.1575698852539062,
+    "overlapping_processing_pairs": 5,
+    "processing_overlap_ms": 287.36,
+    "resolution": [
+      512,
+      512
+    ],
+    "vision_slices": 0,
+    "audio_bit_exact_before_encoding": true,
+    "frame_motion_mean_absolute_difference": 3.3381334940592446,
+    "first_media_seconds": 7.757,
+    "median_avatar_rtf": 0.191,
+    "chunks": [
+      {
+        "sequence": 10,
+        "valid_samples": 23040,
+        "inference_ms": 149.88,
+        "encode_ms": 24.49,
+        "queue_ms": 0.08,
+        "render_ms": 180.69,
+        "rtf": 0.188
+      },
+      {
+        "sequence": 11,
+        "valid_samples": 23040,
+        "inference_ms": 141.74,
+        "encode_ms": 34.97,
+        "queue_ms": 0.12,
+        "render_ms": 183.61,
+        "rtf": 0.191
+      },
+      {
+        "sequence": 12,
+        "valid_samples": 23040,
+        "inference_ms": 134.06,
+        "encode_ms": 28.47,
+        "queue_ms": 0.09,
+        "render_ms": 169.81,
+        "rtf": 0.177
+      },
+      {
+        "sequence": 13,
+        "valid_samples": 23040,
+        "inference_ms": 164.27,
+        "encode_ms": 42.26,
+        "queue_ms": 1.13,
+        "render_ms": 214.69,
+        "rtf": 0.224
+      },
+      {
+        "sequence": 14,
+        "valid_samples": 6720,
+        "inference_ms": 179.25,
+        "encode_ms": 24.13,
+        "queue_ms": 1.13,
+        "render_ms": 374.85,
+        "rtf": 0.39
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "media_events": 7,
+    "playback_started": 1,
+    "interruption_ack_ms": 48,
+    "stale_media_after_interrupt": 0,
+    "camera_and_microphone_worklet": true,
+    "decision_ms": 960,
+    "input_samples": 15360,
+    "frames_per_block": 24,
+    "interruption_audio_stop_ms": 35,
+    "interruption_first_draw_ms": 31,
+    "transition_resume": {
+      "anchor_matched": true,
+      "motion_preserved": true,
+      "anchor": {
+        "sequence": 9,
+        "frame_index": 9
+      },
+      "motion_frames": 9,
+      "resume_ms": 54.34
+    },
+    "repeated_interruption": true,
+    "transition_ms": 814,
+    "idle_animation": true,
+    "audio_input_without_camera": true,
+    "audio_output_without_avatar": true,
+    "audio_only_avatar_renders": 0,
+    "user_asr_and_capture_timestamps": true,
+    "reply_generation_and_playback_timestamps": true,
+    "live_loudness_meter": true,
+    "postroll_drawn": true,
+    "reconnect": true,
+    "page_errors": [],
+    "separate_media_and_control": true,
+    "h264_video": true,
+    "device_labels": "理解 GPU 4 / 原声 GPU 6 / 视频 GPU 5 / 字幕 GPU 7"
+  }
+}

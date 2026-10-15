@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-15",
+  "hardware": "4 x NVIDIA H200 (143771 MiB each)",
+  "driver": "570.124.06",
+  "scope": "Whole-device nvidia-smi memory.used; all four selected devices had 1 MiB used before startup and after shutdown. Includes startup, compile warmup, camera + avatar, audio-only input + avatar and browser regression. Model runtime subprocesses are included in device totals. No process-ownership claims are made from this dataset.",
+  "requested_interval_seconds": 0.2,
+  "actual_interval_seconds": {
+    "median": 1.404,
+    "max": 11.0
+  },
+  "duration_seconds": 657.017,
+  "settings": {
+    "physical_gpus": {
+      "understanding": 4,
+      "tts": 6,
+      "avatar": 5,
+      "asr": 7
+    },
+    "compile_brain": true,
+    "compile_avatar": true,
+    "compile_vocoder": false,
+    "vision_fps": 5,
+    "vision_context_units": 24,
+    "vision_previous_tokens": 500,
+    "avatar_variant": "lite",
+    "resolution": [
+      512,
+      512
+    ],
+    "fps": 25,
+    "frames_per_chunk": 24
+  },
+  "overall": {
+    "samples": 438,
+    "per_gpu_peak_mib": {
+      "4": 22532,
+      "5": 6356,
+      "6": 7502,
+      "7": 3926
+    },
+    "max_simultaneous_total_mib": 40316
+  },
+  "phases": {
+    "startup_and_warmup": {
+      "samples": 249,
+      "per_gpu_peak_mib": {
+        "4": 22270,
+        "5": 6210,
+        "6": 7494,
+        "7": 3926
+      },
+      "max_simultaneous_total_mib": 39676
+    },
+    "camera_avatar": {
+      "samples": 76,
+      "per_gpu_peak_mib": {
+        "4": 22532,
+        "5": 6356,
+        "6": 7502,
+        "7": 3926
+      },
+      "max_simultaneous_total_mib": 40316
+    },
+    "audio_only_avatar": {
+      "samples": 14,
+      "per_gpu_peak_mib": {
+        "4": 20358,
+        "5": 6356,
+        "6": 7490,
+        "7": 3926
+      },
+      "max_simultaneous_total_mib": 37906
+    },
+    "browser_regression": {
+      "samples": 35,
+      "per_gpu_peak_mib": {
+        "4": 20372,
+        "5": 6356,
+        "6": 6682,
+        "7": 3926
+      },
+      "max_simultaneous_total_mib": 37106
+    },
+    "stopping": {
+      "samples": 2,
+      "per_gpu_peak_mib": {
+        "4": 20172,
+        "5": 6356,
+        "6": 4788,
+        "7": 3702
+      },
+      "max_simultaneous_total_mib": 35018
+    }
+  }
+}

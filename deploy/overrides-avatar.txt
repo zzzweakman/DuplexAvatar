@@ -1,0 +1,2 @@
+# PyTorch 2.7.1+cu128 requires this NCCL, overriding the upstream requirements.
+nvidia-nccl-cu12==2.26.2

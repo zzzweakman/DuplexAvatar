@@ -1,0 +1,11 @@
+{
+  "name": "duplex-avatar-tests",
+  "private": true,
+  "description": "Optional browser regression tooling; the application has no frontend build step",
+  "scripts": {
+    "test": "node --test tests/*.mjs",
+    "test:browser": "node scripts/browser_smoke.cjs",
+    "test:vision": "node scripts/vision_browser_smoke.cjs"
+  },
+  "devDependencies": {"playwright": "1.63.0"}
+}

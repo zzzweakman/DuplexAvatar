@@ -1,0 +1,3 @@
+# The upstream demo requires librosa>=0.10.2; minicpmo-utils 1.0.6 pins 0.9.0.
+# This exact override is used in the tested deployment.
+librosa==0.11.0
