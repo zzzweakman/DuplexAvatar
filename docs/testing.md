@@ -1,6 +1,6 @@
 # 测试与诊断
 
-所有命令从仓库根目录执行；使用与启动器一致的 `DUPLEX_AVATAR_CONFIG`。默认端口 8443。完整模型测试一次只运行一个；GPU 0–3 配置仅通过配置逻辑测试，本项目实测 GPU 为 4–7。
+所有命令从仓库根目录执行；默认使用 GPU 0–3、端口 8443。自定义分配时使用与启动器一致的 `DUPLEX_AVATAR_CONFIG`。完整模型测试一次只运行一个；GPU 0–3 分配已通过配置逻辑测试，已发布的真实模型实测使用 GPU 4–7，对应 `deploy/four-gpu-4-7.json`。
 
 ## CPU 回归
 
@@ -58,11 +58,11 @@ node scripts/vision_browser_smoke.cjs --audio-output
 终端 A 先启动只读采样器，再在终端 B 启动服务并依次运行带视觉 / 仅音频测试：
 
 ```bash
-python3 scripts/profile_memory.py --gpus 4 5 6 7 --interval 0.2 \
+python3 scripts/profile_memory.py --gpus 0 1 2 3 --interval 0.2 \
   --output runtime/memory-my-run
 ```
 
-`--output` 必须是新目录。四卡 0–3 机器将 `--gpus` 改为 `0 1 2 3`。采样器使用 `nvidia-smi`；实际间隔受命令执行时间影响，时间戳保存在 `samples.jsonl`。完成后在终端 A 按 Ctrl-C，写出 `summary.json`。
+`--output` 必须是新目录。采样器默认也是 0–3；自定义 GPU 分配时，将 `--gpus` 改为实际使用的物理编号。采样器使用 `nvidia-smi`；实际间隔受命令执行时间影响，时间戳保存在 `samples.jsonl`。完成后在终端 A 按 Ctrl-C，写出 `summary.json`。
 
 它记录各 GPU 的整卡使用量和本项目进程使用量，并分别统计：
 

@@ -90,7 +90,7 @@ def summarize(samples):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--gpus", nargs="+", type=int, default=[4, 5, 6, 7])
+    parser.add_argument("--gpus", nargs="+", type=int, default=[0, 1, 2, 3])
     parser.add_argument("--interval", type=float, default=0.2)
     parser.add_argument("--seconds", type=float, default=0, help="0: continue until Ctrl-C/SIGTERM")
     parser.add_argument("--output", type=Path, required=True, help="A new output directory")

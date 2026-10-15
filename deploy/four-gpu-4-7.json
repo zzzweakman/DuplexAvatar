@@ -1,0 +1,7 @@
+{
+  "allowed_gpus": [4, 5, 6, 7],
+  "brain_gpu": 4,
+  "tts_gpu": 6,
+  "avatar_gpu": 5,
+  "asr_gpu": 7
+}

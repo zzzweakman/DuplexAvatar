@@ -10,8 +10,8 @@ Real-time full-duplex audiovisual avatar: MiniCPM-o 4.5 → original speech → 
 
 | 输入方式 | 演示录像 |
 | --- | --- |
-| 摄像头 + 麦克风 | [观看带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57479237?key=d00b75db8a81288f235ebb684174c444) |
-| 仅麦克风 | [观看不带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57484530) |
+| 摄像头 + 麦克风 | [观看带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57484530) |
+| 仅麦克风 | [观看不带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57479237?key=d00b75db8a81288f235ebb684174c444) |
 
 两段录像为项目实际操作演示，托管在 Awesome Screenshot。
 
@@ -32,24 +32,24 @@ Real-time full-duplex audiovisual avatar: MiniCPM-o 4.5 → original speech → 
 ```mermaid
 flowchart LR
     Browser[浏览器：麦克风 / 摄像头] --> Gateway[CPU 网关：异步调度与流控]
-    Gateway --> Brain[GPU 4：MiniCPM 编码器与 LLM]
-    Brain --> Voice[GPU 6：MiniCPM 原生 TTS 与声码器]
-    Voice --> Avatar[GPU 5：FlashHead Lite]
+    Gateway --> Brain[GPU 0：MiniCPM 编码器与 LLM]
+    Brain --> Voice[GPU 2：MiniCPM 原生 TTS 与声码器]
+    Voice --> Avatar[GPU 1：FlashHead Lite]
     Voice --> PCM[原始 PCM]
     Avatar --> Video[H.264 视频]
-    Gateway --> ASR[GPU 7：Whisper 字幕]
+    Gateway --> ASR[GPU 3：Whisper 字幕]
     PCM --> Player[浏览器同步播放]
     Video --> Player
     ASR --> Player
 ```
 
-| 模块 | 本机默认物理 GPU | 四卡机器示例 | 进程 / 环境 |
-| --- | --- | --- | --- |
-| 音频 / 视觉编码、LLM 理解与决策 | 4 | 0 | brain / MiniCPM 环境 |
-| 同一 MiniCPM 的原生 TTS、声码器 | 6 | 2 | brain 内有序语音线程 / MiniCPM 环境 |
-| FlashHead Lite 视频生成 | 5 | 1 | avatar / FlashHead 环境 |
-| faster-whisper-large-v3 字幕 | 7 | 3 | asr / 独立字幕环境 |
-| HTTPS、WebSocket、媒体调度 | CPU | CPU | gateway / MiniCPM 环境 |
+| 模块 | 默认物理 GPU | 进程 / 环境 |
+| --- | --- | --- |
+| 音频 / 视觉编码、LLM 理解与决策 | 0 | brain / MiniCPM 环境 |
+| 同一 MiniCPM 的原生 TTS、声码器 | 2 | brain 内有序语音线程 / MiniCPM 环境 |
+| FlashHead Lite 视频生成 | 1 | avatar / FlashHead 环境 |
+| faster-whisper-large-v3 字幕 | 3 | asr / 独立字幕环境 |
+| HTTPS、WebSocket、媒体调度 | CPU | gateway / MiniCPM 环境 |
 
 这是**单机四卡的组件分工与流水线并行**。理解和语音使用同一进程内的两个 CUDA 设备；数字人与字幕是独立进程。下一块输入可以与上一块语音 / 视频生成重叠执行。当前不支持跨机器部署、LLM 张量并行或四个并发会话。
 
@@ -83,10 +83,12 @@ export PATH="$HOME/.local/bin:$PATH"
 
 ### 2. 选择 GPU
 
-仓库默认保留开发服务器的 **4、5、6、7**。只有四张卡、编号为 **0、1、2、3** 的机器，在当前终端执行：
+仓库默认使用 **0、1、2、3**：GPU 0 负责理解，GPU 2 负责原声，GPU 1 负责视频，GPU 3 负责字幕。普通四卡机器可直接使用，无需设置额外环境变量。
+
+如果需要使用开发服务器原来的 **4、5、6、7** 分配，在当前终端执行：
 
 ```bash
-export DUPLEX_AVATAR_CONFIG=deploy/four-gpu-0-3.json
+export DUPLEX_AVATAR_CONFIG=deploy/four-gpu-4-7.json
 ```
 
 自定义分配可创建被 Git 忽略的 `config.local.json`，写入以下字段，然后设置 `DUPLEX_AVATAR_CONFIG=config.local.json`：
@@ -101,7 +103,7 @@ export DUPLEX_AVATAR_CONFIG=deploy/four-gpu-0-3.json
 }
 ```
 
-数字是**物理 GPU 编号**。启动器为每个进程设置 `CUDA_VISIBLE_DEVICES`；brain 进程中理解为 `cuda:0`，原声为 `cuda:1`。更换终端后要重新设置配置文件环境变量。不要把进程内的逻辑设备编号填成物理编号。
+数字是**物理 GPU 编号**。启动器为每个进程设置 `CUDA_VISIBLE_DEVICES`；brain 进程中理解为 `cuda:0`，原声为 `cuda:1`。使用自定义分配时，更换终端后要重新设置配置文件环境变量；恢复仓库默认值时取消 `DUPLEX_AVATAR_CONFIG` 和 `DUPLEX_AVATAR_OVERRIDES`。不要把进程内的逻辑设备编号填成物理编号。
 
 ### 3. 安装代码、环境、权重与证书
 
@@ -245,7 +247,7 @@ python3 scripts/manage.py restart-asr
 | 现象 | 检查与处理 |
 | --- | --- |
 | `No recorded run` | 尚未执行过 `manage.py start`；先安装，再启动 |
-| `authorized physical GPUs` | 配置中的分工不在 `allowed_gpus` 内；四卡机器使用 0–3 示例 |
+| `authorized physical GPUs` | 配置中的分工不在 `allowed_gpus` 内；默认允许 0–3，自定义分配需同步修改允许列表 |
 | `librosa` 版本冲突 | 使用本仓库安装脚本；MiniCPM 的 0.11.0 覆盖项是有意设置 |
 | NCCL / FlashAttention ABI 错误 | 保持 FlashHead 的 torch 2.7.1+cu128、NCCL 2.26.2 和 CPython 3.10 对应 wheel |
 | ASR 报找不到 cuBLAS / cuDNN | 使用 `manage.py` 启动；它设置字幕环境内 NVIDIA 库的搜索路径 |

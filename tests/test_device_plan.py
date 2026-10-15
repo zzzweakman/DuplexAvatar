@@ -17,7 +17,7 @@ class DevicePlanTests(unittest.TestCase):
                     manage.role_devices("brain")
 
     def test_four_gpu_plan_and_single_gpu_voice_rollback(self):
-        with patch.dict(manage.CONFIG, brain_gpu=4, tts_gpu=6, avatar_gpu=5, asr_gpu=7):
+        with patch.dict(manage.CONFIG, allowed_gpus=[4, 5, 6, 7], brain_gpu=4, tts_gpu=6, avatar_gpu=5, asr_gpu=7):
             self.assertEqual(manage.role_devices("brain"), [4, 6])
             self.assertEqual(manage.role_devices("avatar"), 5)
             self.assertEqual(manage.role_devices("asr"), 7)
@@ -26,10 +26,11 @@ class DevicePlanTests(unittest.TestCase):
                 self.assertEqual(manage.role_devices("brain"), [4])
 
     def test_rejects_unauthorized_devices_and_avatar_contention(self):
-        for field, role in (("brain_gpu", "brain"), ("tts_gpu", "brain"), ("avatar_gpu", "avatar"), ("asr_gpu", "asr")):
-            with self.subTest(field=field), patch.dict(manage.CONFIG, **{field: 0}):
-                with self.assertRaisesRegex(ValueError, "authorized"):
-                    manage.role_devices(role)
-        with patch.dict(manage.CONFIG, brain_gpu=4, tts_gpu=5, avatar_gpu=5):
-            with self.assertRaisesRegex(ValueError, "separate"):
-                manage.role_devices("brain")
+        with patch.dict(manage.CONFIG, allowed_gpus=[0, 1, 2, 3], brain_gpu=0, tts_gpu=2, avatar_gpu=1, asr_gpu=3):
+            for field, role in (("brain_gpu", "brain"), ("tts_gpu", "brain"), ("avatar_gpu", "avatar"), ("asr_gpu", "asr")):
+                with self.subTest(field=field), patch.dict(manage.CONFIG, **{field: 4}):
+                    with self.assertRaisesRegex(ValueError, "authorized"):
+                        manage.role_devices(role)
+            with patch.dict(manage.CONFIG, tts_gpu=1):
+                with self.assertRaisesRegex(ValueError, "separate"):
+                    manage.role_devices("brain")

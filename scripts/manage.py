@@ -73,7 +73,7 @@ def role_devices(name):
                "avatar": CONFIG["avatar_gpu"], "asr": CONFIG.get("asr_gpu", CONFIG["avatar_gpu"]), "gateway": None}
     devices = mapping[name]
     values = devices if isinstance(devices, list) else [] if devices is None else [devices]
-    allowed = CONFIG.get("allowed_gpus", [4, 5, 6, 7])
+    allowed = CONFIG.get("allowed_gpus", [0, 1, 2, 3])
     if not isinstance(allowed, list) or not allowed or any(type(gpu) is not int or gpu < 0 for gpu in allowed):
         raise ValueError("allowed_gpus must be a nonempty list of physical GPU indices")
     if any(type(gpu) is not int or gpu not in allowed for gpu in values):
