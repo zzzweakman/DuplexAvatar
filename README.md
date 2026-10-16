@@ -8,12 +8,12 @@ Real-time full-duplex audiovisual avatar: MiniCPM-o 4.5 → original speech → 
 
 ## 演示
 
-| 输入方式 | 演示录像 |
-| --- | --- |
-| 摄像头 + 麦克风 | [观看带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57484530) |
-| 仅麦克风 | [观看不带视觉输入的 Demo](https://www.awesomescreenshot.com/video/57479237?key=d00b75db8a81288f235ebb684174c444) |
+| 输入方式 | 仓库内 MP4 | 在线备用 |
+| --- | --- | --- |
+| 摄像头 + 麦克风 | [播放 / 下载带视觉输入的 Demo](assets/vision%2Baudio.mp4) | [Awesome Screenshot](https://www.awesomescreenshot.com/video/57484530) |
+| 仅麦克风 | [播放 / 下载不带视觉输入的 Demo](assets/audio.mp4) | [Awesome Screenshot](https://www.awesomescreenshot.com/video/57479237?key=d00b75db8a81288f235ebb684174c444) |
 
-两段录像为项目实际操作演示，托管在 Awesome Screenshot。
+两段录像为项目实际操作演示，MP4 随仓库一同提供：带视觉输入约 84 秒 / 24.4 MiB，仅音频输入约 71 秒 / 18.6 MiB，均为 720p、H.264 视频与 AAC 音频。
 
 ## 已实现
 
